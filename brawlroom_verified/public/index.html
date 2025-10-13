@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>BrawlRoom — Verified Flow</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <script src="/socket.io/socket.io.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">BrawlRoom</div>
+      <div class="subtitle">Dobieramy 6 graczy -> generujemy kod. Host wkleja prawdziwy kod z gry. Gracze mają minutę na dołączenie i przesyłają screenshot jako dowód.</div>
+    </header>
+
+    <main>
+      <div class="panel">
+        <input id="name" placeholder="Twoja nazwa" maxlength="20" />
+        <div class="row">
+          <button id="joinQueue">Dołącz do kolejki</button>
+          <button id="leaveQueue">Opuść kolejkę</button>
+          <button id="createManual">Stwórz pokój ręcznie</button>
+        </div>
+        <div class="row">
+          <input id="hostCodeInput" placeholder="Wklej kod z Brawl Stars (host)" maxlength="20" />
+          <button id="setHostCode">Ustaw kod hosta</button>
+        </div>
+        <div id="queueInfo" class="roomInfo"></div>
+        <div id="roomInfo" class="roomInfo"></div>
+        <div id="qr" class="qr" aria-hidden="true"></div>
+      </div>
+
+      <div class="panel players">
+        <h3>Gracze</h3>
+        <div id="playersList" class="playersList"></div>
+        <div id="countdown" class="countdown"></div>
+        <div class="row">
+          <input type="file" id="proofFile" accept="image/*" />
+          <button id="uploadProof">Wyślij screenshot (proof)</button>
+        </div>
+        <button id="confirm" class="start">Potwierdzam, że dołączyłem w grze</button>
+        <div id="result" class="result" role="status"></div>
+      </div>
+    </main>
+
+    <footer class="instructions">
+      <h4>Jak dołączyć w Brawl Stars</h4>
+      <ol>
+        <li>Host w grze tworzy prywatny mecz i kopiuje kod (lub używa opcji create match).</li>
+        <li>Host wkleja kod do pola "Wklej kod z Brawl Stars" i klika "Ustaw kod hosta".</li>
+        <li>Inni gracze otwierają aplikację Brawl Stars i wklejają kod w opcji Join with code lub wybierają private match.</li>
+        <li>Po wejściu do lobby robią screenshot i przesyłają go przez stronę, a następnie klikają "Potwierdzam".</li>
+      </ol>
+      <p class="note">Strona nie łączy się z serwerami Supercell — gracze muszą ręcznie wkleić kod w aplikacji. Upload screenshotów służy jako dowód dołączenia.</p>
+    </footer>
+  </div>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
